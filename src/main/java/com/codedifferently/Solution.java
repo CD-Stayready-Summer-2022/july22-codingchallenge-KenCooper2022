@@ -1,5 +1,10 @@
 package com.codedifferently;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Solution {
     /**
      * You will be given an integer called number and an array called possibleFamilyMembers
@@ -7,7 +12,7 @@ public class Solution {
      * 1 of any other number in the family.
      *
      * So for example if the number = 4, and the possibleFamilyMembers is [1,4,3,5]
-     * The actualFamilyMembers would be [3,4,5]
+     * The actualFamilyMembers would be [3,4,5]                            [1 3 4 5]
      * 3 is 1 away from 4
      * 4 is equal to 4
      * 4 is 1 away from 5
@@ -18,6 +23,24 @@ public class Solution {
      * @return
      */
     public Integer[] numberFamily(Integer number, Integer[] possibleFamilyMembers){
-        return null;
+        int left=0;
+        int right =0;
+        Set<Integer> aux = new HashSet<>();
+        Arrays.sort(possibleFamilyMembers);
+        for(int i =0; i < possibleFamilyMembers.length-1;i++){
+            left = i;
+            right = left+1;
+            if(possibleFamilyMembers[right]-possibleFamilyMembers[left]==1){
+                aux.add(possibleFamilyMembers[left]);
+                aux.add(possibleFamilyMembers[right]);
+            }
+        }
+
+        return aux.toArray(new Integer[aux.size()]);
+
+
+
+
+
     }
 }
